@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Messages App</title>
+
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+
+        textarea {
+            width: 100%;
+        }
+
+        ul {
+            padding: 0 15px;
+        }
+
+        body > div {
+            width: 500px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <ul>
+            <li v-for="message in messages">
+                {{message.text}} - {{message.createdAt}}
+                <button @click="deleteMessage(message)">X</button>
+            </li>
+        </ul>
+        <form v-on:submit.prevent="addMessage">
+            <textarea v-model="newMessage" placeholder="leave a message"></textarea>
+            <div>
+                <button v-bind:disabled="addDisabled" type="submit">Add</button>
+            </div>
+        </form>
+    </div>    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                messages: [],
+                newMessage: ''
+            },
+            methods: {
+                addMessage (event) {
+                    if (!this.newMessage) { 
+                        return; 
+                    }
+
+                    this.messages.push({text: this.newMessage});
+                    this.newMessage = '';
+                },
+                deleteMessage(message) {
+                    this.messages.splice(this.messages.indexOf(message), 1);
+                }
+            },
+            computed: {
+                addDisabled () {
+                    return this.messages.length >= 5 || this.newMessage.length > 50;
+                }
+            }
+        });
+
+    </script>
+</body>
+
+</html>
