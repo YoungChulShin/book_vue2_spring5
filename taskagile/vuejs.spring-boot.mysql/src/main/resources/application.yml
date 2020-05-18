@@ -1,0 +1,5 @@
+spring:
+  profiles:
+    include: dev
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
