@@ -24,7 +24,7 @@ describe('services/registration', () => {
         })
 
         return registrationService.register().then(data => {
-            expect(data.result).toEqual('success')
+            expect(data.result).toEqual()
         })
     })
 })
