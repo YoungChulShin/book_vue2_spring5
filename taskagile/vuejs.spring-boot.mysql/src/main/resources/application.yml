@@ -3,3 +3,7 @@ spring:
     include: dev
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+logging:
+  level:
+    com:
+      taskagile: DEBUG
