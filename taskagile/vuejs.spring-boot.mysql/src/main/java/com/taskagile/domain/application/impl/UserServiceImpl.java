@@ -8,6 +8,7 @@ import com.taskagile.domain.common.event.DomainEventPublisher;
 import com.taskagile.domain.common.mail.MailManager;
 import com.taskagile.domain.common.mail.MessageVariable;
 import com.taskagile.domain.model.user.RegistrationException;
+import com.taskagile.domain.model.user.RegistrationManagement;
 import com.taskagile.domain.model.user.User;
 import com.taskagile.domain.model.user.events.UserRegisteredEvent;
 

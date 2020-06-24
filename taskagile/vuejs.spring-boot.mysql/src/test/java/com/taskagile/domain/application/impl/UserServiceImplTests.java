@@ -3,6 +3,7 @@ package com.taskagile.domain.application.impl;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import com.taskagile.domain.application.commands.RegistrationCommand;
 import com.taskagile.domain.common.event.DomainEventPublisher;
@@ -10,13 +11,16 @@ import com.taskagile.domain.common.mail.MailManager;
 import com.taskagile.domain.common.mail.MessageVariable;
 import com.taskagile.domain.model.user.EmailAddressExistsException;
 import com.taskagile.domain.model.user.RegistrationException;
+import com.taskagile.domain.model.user.RegistrationManagement;
 import com.taskagile.domain.model.user.User;
 import com.taskagile.domain.model.user.UsernameExistsException;
 import com.taskagile.domain.model.user.events.UserRegisteredEvent;
 
-import org.aspectj.lang.annotation.Before;
+import org.junit.Before;
 import org.junit.Test;
+import org.springframework.test.context.ActiveProfiles;
 
+@ActiveProfiles("test")
 public class UserServiceImplTests {
   // UserServiceImplTests
 
@@ -54,7 +58,7 @@ public class UserServiceImplTests {
     instance.register(command);
   }
 
-  @Test(expected =  RegistrationException.class)
+  @Test(expected = RegistrationException.class)
   public void register_existingEmailAddress_shouldFail() throws RegistrationException {
 
     String username = "existing";
@@ -76,7 +80,7 @@ public class UserServiceImplTests {
     String password = "testPassword";
     User newUser = User.create(username, emailAddress, password);
 
-    when(registrationManagementMock).register(username, emailAddress, password).thenReturn(newUser);
+    when(registrationManagementMock.register(username, emailAddress, password)).thenReturn(newUser);
 
     RegistrationCommand command = new RegistrationCommand(username, emailAddress, password);
 
