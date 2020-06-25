@@ -6,7 +6,9 @@ import com.taskagile.domain.model.user.User;
 import com.taskagile.domain.model.user.UserRepository;
 
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class HibernateUserRepository extends HibernateSupport implements UserRepository{
 
   public HibernateUserRepository(EntityManager entityManager) {
