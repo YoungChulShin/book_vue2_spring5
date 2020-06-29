@@ -3,6 +3,16 @@ spring:
     include: dev
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+  freemarker:
+    template-loader:
+      path: classpath:/mail-templates/
+  mail:
+    host: localhost
+    port: 1025
+    properties:
+      mail:
+        smtp:
+          auth: false
 logging:
   level:
     com:
