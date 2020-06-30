@@ -1,11 +1,13 @@
+app:
+  mail-from: noreply@taskagile.com
+
 spring:
   profiles:
     include: dev
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
   freemarker:
-    template-loader:
-      path: classpath:/mail-templates/
+    template-loader-path: classpath:/mail-templates/
   mail:
     host: localhost
     port: 1025
