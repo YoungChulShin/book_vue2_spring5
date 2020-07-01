@@ -54,5 +54,4 @@ public class AsyncMailer implements Mailer{
       log.error("Fail to send mail message", e);
     }
 	}
-
 }
