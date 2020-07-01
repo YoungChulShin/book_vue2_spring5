@@ -43,6 +43,10 @@ public class User extends AbstractBaseEntity{
   @Column(name = "created_date", nullable = false)
   private LocalDateTime createdDate;
 
+  public UserId getId() {
+    return new UserId(id);
+  }
+
   public static User create(String username, String emailAddress, String password) {
     User user = new User();
     user.username = username;

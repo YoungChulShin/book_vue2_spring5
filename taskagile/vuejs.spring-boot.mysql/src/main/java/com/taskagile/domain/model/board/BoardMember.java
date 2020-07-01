@@ -1,6 +1,7 @@
 package com.taskagile.domain.model.board;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -20,6 +21,40 @@ public class BoardMember extends AbstractBaseEntity {
   @EmbeddedId // 복합 키로 설정할 수 있다
   private BoardMemberId id;
 
+  public BoardId getBoardId() {
+    return id.getBoardId();
+  }
+
+  public UserId getUserId() {
+    return id.getUserId();
+  }
+
+	@Override
+	public boolean equals(Object obj) {
+    if (obj == this) {
+      return true;
+    }
+
+    if (!(obj instanceof BoardMember)) {
+      return false;
+    }
+
+    BoardMember that = (BoardMember) obj;
+    return Objects.equals(id, that.id);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public String toString() {
+    return "BoardMember{" +
+    "id=" + id +
+    '}';
+  }
+  
   @Embeddable
   public static class BoardMemberId implements Serializable {
 
@@ -37,29 +72,28 @@ public class BoardMember extends AbstractBaseEntity {
 
     public UserId getUserId() {
       return new UserId(userId);
+    } 
+
+    @Override
+    public boolean equals(Object o) {
+      if (this == o) return true;
+      if (!(o instanceof BoardMemberId)) return false;
+      BoardMemberId that = (BoardMemberId) o;
+      return boardId == that.boardId &&
+        userId == that.userId;
+    }
+
+    @Override
+    public int hashCode() {
+      return Objects.hash(boardId, userId);
+    }
+
+    @Override
+    public String toString() {
+      return "BoardMemberId{" +
+        "boardId=" + boardId +
+        ", userId=" + userId +
+        '}';
     }
   }
-
-  public BoardId getBoardId() {
-    return id.get
-  }
-
-	@Override
-	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public int hashCode() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

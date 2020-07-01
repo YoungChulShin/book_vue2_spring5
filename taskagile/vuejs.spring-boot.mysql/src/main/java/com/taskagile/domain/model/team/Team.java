@@ -13,6 +13,9 @@ import javax.persistence.Table;
 import com.taskagile.domain.common.model.AbstractBaseEntity;
 import com.taskagile.domain.model.user.UserId;
 
+import lombok.Getter;
+
+@Getter
 @Entity
 @Table(name = "team")
 public class Team extends AbstractBaseEntity{

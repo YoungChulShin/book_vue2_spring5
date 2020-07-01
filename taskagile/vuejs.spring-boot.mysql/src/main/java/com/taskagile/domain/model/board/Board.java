@@ -14,6 +14,9 @@ import com.taskagile.domain.common.model.AbstractBaseEntity;
 import com.taskagile.domain.model.team.TeamId;
 import com.taskagile.domain.model.user.UserId;
 
+import lombok.Getter;
+
+@Getter
 @Entity
 @Table(name = "board")
 public class Board extends AbstractBaseEntity {
@@ -54,7 +57,7 @@ public class Board extends AbstractBaseEntity {
   }
 
   public UserId getUserId() {
-    return new UserId(id);
+    return new UserId(userId);
   }
 
   public TeamId getTeamId() {

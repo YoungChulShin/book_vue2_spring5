@@ -14,7 +14,7 @@ public class SimpleUser implements UserDetails, Serializable {
 
   private static final long serialVersionUID = -7144174657188362966L;
 
-  private long userId;
+  private UserId userId;
   private String username;
   private String password;
 
@@ -29,7 +29,7 @@ public class SimpleUser implements UserDetails, Serializable {
     return Collections.singleton(new SimpleGrantedAuthority("ROLE_USER"));
   }
 
-  public Long getUserId() {
+  public UserId getUserId() {
     return userId;
   }
 
