@@ -26,7 +26,7 @@ public class MeApiController {
     this.boardService = boardService;
   }
 
-  @GetMapping("/apis/me")
+  @GetMapping("/api/me")
   public ResponseEntity<ApiResult> getMyData(@CurrentUser SimpleUser currentUser) {
     List<Team> teams = teamService.findTeamsByUserId(currentUser.getUserId());
     List<Board> boards = boardService.findBoardsByMembership(currentUser.getUserId());

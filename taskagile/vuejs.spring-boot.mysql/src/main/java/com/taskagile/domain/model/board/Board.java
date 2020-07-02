@@ -64,6 +64,10 @@ public class Board extends AbstractBaseEntity {
     return teamId == null ? new TeamId(0) : new TeamId(teamId);
   }
 
+  public boolean isPersonal() {
+    return teamId == null;
+  }
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) {
