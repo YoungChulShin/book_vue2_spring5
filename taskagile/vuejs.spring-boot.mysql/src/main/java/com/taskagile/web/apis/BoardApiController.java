@@ -1,5 +1,7 @@
 package com.taskagile.web.apis;
 
+import java.util.List;
+
 import com.taskagile.domain.application.BoardService;
 import com.taskagile.domain.application.TeamService;
 import com.taskagile.domain.common.security.CurrentUser;
@@ -38,20 +40,20 @@ public class BoardApiController {
             return CreateBoardResult.build(board);
     }
 
-    // @GetMapping("api/boards/{boardId}")
-    // public ResponseEntity<ApiResult> getBoard(@PathVariable long rawBoardId) {
+    @GetMapping("api/boards/{boardId}")
+    public ResponseEntity<ApiResult> getBoard(@PathVariable long rawBoardId) {
 
-    //   BoardId boardId = new BoardId(rawBoardId);
-    //   Board board = boardService.findById(boardId);
-    //   if (board == null) {
-    //     return Result.notFound();
-    //   }
+      BoardId boardId = new BoardId(rawBoardId);
+      Board board = boardService.findById(boardId);
+      if (board == null) {
+        return Result.notFound();
+      }
 
-    //   List<User> members = boardService.findMembers(board);
+      List<User> members = boardService.findMembers(board);
 
-    //   Team team = null;
-    //   if (!board.isPersonal()) {
-    //     team = teamService.findById(board.getTeamId());
-    //   }
-    // }
+      Team team = null;
+      if (!board.isPersonal()) {
+        team = teamService.findById(board.getTeamId());
+      }
+    }
 }
