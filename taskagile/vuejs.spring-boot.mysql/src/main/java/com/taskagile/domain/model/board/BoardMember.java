@@ -21,6 +21,12 @@ public class BoardMember extends AbstractBaseEntity {
   @EmbeddedId // 복합 키로 설정할 수 있다
   private BoardMemberId id;
 
+  public static BoardMember create(BoardId boardId, UserId userId) {
+    BoardMember boardMember = new BoardMember();
+    boardMember.id = new BoardMemberId(boardId, userId);
+    return boardMember;
+  }
+
   public BoardId getBoardId() {
     return id.getBoardId();
   }
@@ -54,7 +60,7 @@ public class BoardMember extends AbstractBaseEntity {
     "id=" + id +
     '}';
   }
-  
+
   @Embeddable
   public static class BoardMemberId implements Serializable {
 
@@ -66,13 +72,22 @@ public class BoardMember extends AbstractBaseEntity {
     @Column(name = "user_id")
     private long userId;
 
+    public BoardMemberId() {
+
+    }
+
+    private BoardMemberId(BoardId boardId, UserId userId) {
+      this.boardId = boardId.value();
+      this.userId = userId.value();
+    }
+
     public BoardId getBoardId() {
       return new BoardId(boardId);
     }
 
     public UserId getUserId() {
       return new UserId(userId);
-    } 
+    }
 
     @Override
     public boolean equals(Object o) {

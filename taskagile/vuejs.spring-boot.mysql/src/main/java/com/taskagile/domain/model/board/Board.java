@@ -25,7 +25,7 @@ public class Board extends AbstractBaseEntity {
 
   @Id
   @GeneratedValue (strategy = GenerationType.IDENTITY)
-  private long id;
+  private BoardId id;
 
   @Column(name = "name", nullable = false, length = 128, unique = true)
   private String name;

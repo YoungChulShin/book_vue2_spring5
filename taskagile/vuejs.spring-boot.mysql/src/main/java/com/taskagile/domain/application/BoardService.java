@@ -8,7 +8,6 @@ import com.taskagile.domain.model.user.UserId;
 
 public interface BoardService {
 
-    List<Board> findBoardsByMembership(UserId uuserId);
-
+    List<Board> findBoardsByMembership(UserId userId);
     Board createBoard(CreateBoardCommand command);
 }
