@@ -9,7 +9,9 @@ import com.taskagile.domain.model.board.BoardRepository;
 import com.taskagile.domain.model.user.UserId;
 
 import org.hibernate.query.NativeQuery;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class HibernateBoardRepository extends HibernateSupport<Board> implements BoardRepository {
 
   HibernateBoardRepository(EntityManager entityManager) {
