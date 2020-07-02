@@ -58,7 +58,7 @@ public class MyDataResult {
     private long teamId;
 
     BoardResult(Board board) {
-      this.id = board.getId().value()
+      this.id = board.getId().value();
       this.name = board.getName();
       this.description = board.getDescription();
       this.teamId = board.getTeamId().value();
