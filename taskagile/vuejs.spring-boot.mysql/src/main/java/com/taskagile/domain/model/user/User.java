@@ -47,6 +47,10 @@ public class User extends AbstractBaseEntity{
     return new UserId(id);
   }
 
+  public String getInitials() {
+    return (firstName.substring(0, 1) + lastName.substring(0, 1)).toUpperCase();
+  }
+
   public static User create(String username, String emailAddress, String password) {
     User user = new User();
     user.username = username;

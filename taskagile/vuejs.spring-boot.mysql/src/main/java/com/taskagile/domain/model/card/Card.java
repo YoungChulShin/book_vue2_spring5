@@ -48,6 +48,18 @@ public class Card extends AbstractBaseEntity {
   @Column(name = "created_date", nullable = false)
   private LocalDateTime createdDate;
 
+  public CardId getId() {
+    return new CardId(id);
+  }
+
+  public CardListId getCardListId() {
+    return new CardListId(cardListId);
+  }
+
+  public UserId getUserId() {
+    return new UserId(userId);
+  }
+
   public static Card create(CardListId cardListId, UserId userId, String title, String description, int position) {
     Card card = new Card();
     card.cardListId = cardListId.value();
