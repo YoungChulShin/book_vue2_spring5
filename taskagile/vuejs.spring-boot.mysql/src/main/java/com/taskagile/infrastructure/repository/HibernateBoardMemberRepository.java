@@ -8,6 +8,7 @@ import com.taskagile.domain.model.board.BoardId;
 import com.taskagile.domain.model.board.BoardMember;
 import com.taskagile.domain.model.board.BoardMemberRepository;
 import com.taskagile.domain.model.user.User;
+import com.taskagile.domain.model.user.UserId;
 
 import org.hibernate.query.NativeQuery;
 import org.springframework.stereotype.Repository;
@@ -28,5 +29,14 @@ public class HibernateBoardMemberRepository extends HibernateSupport<BoardMember
     NativeQuery<User> query = getSession().createNativeQuery(sql, User.class);
     query.setParameter("boardId", boardId.value());
     return query.list();
+  }
+
+  @Override
+  public void add(BoardId boardId, UserId userId) {
+    String sql = "INSERT IGNORE INTO board_member (board_id, user_id) VALUE (:boardId, :userId)";
+    NativeQuery<BoardMember> query = getSession().createNativeQuery(sql, BoardMember.class);
+    query.setParameter("boardId", boardId.value());
+    query.setParameter("userId", userId.value());
+    query.executeUpdate();
   }
 }

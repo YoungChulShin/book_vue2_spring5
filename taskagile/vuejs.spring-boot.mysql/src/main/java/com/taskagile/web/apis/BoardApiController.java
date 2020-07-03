@@ -14,7 +14,10 @@ import com.taskagile.domain.model.cardlist.CardList;
 import com.taskagile.domain.model.team.Team;
 import com.taskagile.domain.model.user.SimpleUser;
 import com.taskagile.domain.model.user.User;
+import com.taskagile.domain.model.user.UserNotFoundException;
+import com.taskagile.web.payload.AddBoardMemberPayload;
 import com.taskagile.web.payload.CreateBoardPayload;
+import com.taskagile.web.results.AddBoardMemberResult;
 import com.taskagile.web.results.ApiResult;
 import com.taskagile.web.results.BoardResult;
 import com.taskagile.web.results.CreateBoardResult;
@@ -80,5 +83,21 @@ public class BoardApiController {
       List<Card> cards = cardService.findByBoardId(boardId);
 
       return BoardResult.build(team, board, members, cardLists, cards);
+    }
+
+    @PostMapping(value="/api/boards/{boardId}/members")
+    public ResponseEntity<ApiResult> addMember(@PathVariable long rawBoardId, @RequestBody AddBoardMemberPayload payload) {
+      BoardId boardId = new BoardId(rawBoardId);
+      Board board = boardService.findById(boardId);
+      if (board == null) {
+        return Result.notFound();
+      }
+
+      try {
+        User user = boardService.addMember(boardId, payload.getUsernameOrEmailAddress());
+        return AddBoardMemberResult.build(user);
+      } catch (UserNotFoundException e) {
+        return Result.failure("No user found");
+      }
     }
 }
