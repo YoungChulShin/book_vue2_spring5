@@ -5,10 +5,12 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import com.taskagile.domain.model.board.Board;
+import com.taskagile.domain.model.board.BoardId;
 import com.taskagile.domain.model.board.BoardRepository;
 import com.taskagile.domain.model.user.UserId;
 
 import org.hibernate.query.NativeQuery;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -24,5 +26,12 @@ public class HibernateBoardRepository extends HibernateSupport<Board> implements
     NativeQuery<Board> query = getSession().createNativeQuery(sql, Board.class);
     query.setParameter("userId", userId.value());
     return query.list();
+  }
+
+  @Override
+  public Board findById(BoardId boardId) {
+    Query<Board> query = getSession().createQuery("from board where id = :id", Board.class);
+    query.setParameter("id", boardId.value());
+    return query.uniqueResult();
   }
 }
