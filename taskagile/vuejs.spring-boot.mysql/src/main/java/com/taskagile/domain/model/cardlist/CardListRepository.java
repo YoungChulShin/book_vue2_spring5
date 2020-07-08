@@ -10,4 +10,5 @@ public interface CardListRepository {
 
   void save(CardList cardList);
 
+  void changePositions(List<CardListPosition> cardListPositions);
 }

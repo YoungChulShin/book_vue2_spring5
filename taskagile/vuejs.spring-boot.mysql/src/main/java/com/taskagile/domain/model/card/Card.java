@@ -36,9 +36,6 @@ public class Card extends AbstractBaseEntity {
   @Column(name = "title")
   private String title;
 
-  @Column(name = "description")
-  private String description;
-
   @Column(name = "position")
   private int position;
 
@@ -60,12 +57,11 @@ public class Card extends AbstractBaseEntity {
     return new UserId(userId);
   }
 
-  public static Card create(CardListId cardListId, UserId userId, String title, String description, int position) {
+  public static Card create(CardListId cardListId, UserId userId, String title, int position) {
     Card card = new Card();
     card.cardListId = cardListId.value();
     card.userId = userId.value();
     card.title = title;
-    card.description = description;
     card.position = position;
     card.archived = false;
     card.createdDate = LocalDateTime.now();
@@ -96,7 +92,6 @@ public String toString() {
       ", cardListId=" + cardListId +
       ", userId=" + userId +
       ", title='" + title + '\'' +
-      ", description='" + description + '\'' +
       ", position=" + position +
       ", archived=" + archived +
       ", createdDate=" + createdDate +

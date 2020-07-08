@@ -8,6 +8,8 @@ import lombok.Getter;
 @Getter
 public class CardListAddedEvent extends DomainEvent {
 
+  private static final long serialVersionUID = -877934435476435188L;
+
   private CardList cardList;
 
   public CardListAddedEvent(Object source, CardList cardList) {

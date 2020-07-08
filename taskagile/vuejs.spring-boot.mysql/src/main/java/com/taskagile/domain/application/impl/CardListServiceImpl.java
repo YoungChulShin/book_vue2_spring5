@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 
 import com.taskagile.domain.application.CardListService;
 import com.taskagile.domain.application.commands.AddCardListCommand;
+import com.taskagile.domain.application.commands.ChangeCardListPositionsCommand;
 import com.taskagile.domain.common.event.DomainEventPublisher;
 import com.taskagile.domain.model.board.BoardId;
 import com.taskagile.domain.model.cardlist.CardList;
@@ -38,5 +39,10 @@ public class CardListServiceImpl implements CardListService{
     domainEventPublisher.publish(new CardListAddedEvent(this, cardList));
 
     return cardList;
+	}
+
+	@Override
+	public void changePositions(ChangeCardListPositionsCommand command) {
+    cardListRepository.changePositions(command.getCardListPositions());
 	}
 }
