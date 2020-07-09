@@ -8,4 +8,5 @@ public interface CardRepository {
 
   List<Card> findByBoardId(BoardId boardId);
   void save(Card card);
+  void changePositions(List<CardPosition> cardPositions);
 }

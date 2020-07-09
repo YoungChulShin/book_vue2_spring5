@@ -2,7 +2,6 @@ package com.taskagile.domain.application.impl;
 
 import java.util.List;
 
-import com.taskagile.domain.application.CardListService;
 import com.taskagile.domain.application.CardService;
 import com.taskagile.domain.application.commands.AddCardCommand;
 import com.taskagile.domain.application.commands.ChangeCardPositionCommand;
@@ -40,7 +39,6 @@ public class CardServiceImpl implements CardService {
 
 	@Override
 	public void changeCardPositions(ChangeCardPositionCommand command) {
-		// TODO Auto-generated method stub
-
+    cardRepository.changePositions(command.getCardPositions());
 	}
 }
