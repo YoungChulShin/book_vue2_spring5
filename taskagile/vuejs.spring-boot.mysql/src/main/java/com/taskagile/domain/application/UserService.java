@@ -2,6 +2,8 @@ package com.taskagile.domain.application;
 
 import com.taskagile.domain.application.commands.RegistrationCommand;
 import com.taskagile.domain.model.user.RegistrationException;
+import com.taskagile.domain.model.user.User;
+import com.taskagile.domain.model.user.UserId;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -10,4 +12,5 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 // 트랜잭션 컨트롤하기
 public interface UserService extends UserDetailsService {
   void register(RegistrationCommand command) throws RegistrationException;
+  User findById(UserId userId);
 }
