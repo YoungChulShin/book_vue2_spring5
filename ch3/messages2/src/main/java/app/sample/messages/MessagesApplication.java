@@ -15,5 +15,4 @@ public class MessagesApplication {
         MessageService messageService = context.getBean(MessageService.class);
         messageService.save("Hello, Spring");
     }
-
 }

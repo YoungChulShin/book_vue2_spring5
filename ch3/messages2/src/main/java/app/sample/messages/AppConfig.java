@@ -10,13 +10,13 @@ public class AppConfig {
 
     // 빈을 정의
     // 메서드의 이름이 빈의 이름
-    @Bean
-    public MessageRepository messageRepository() {
-        return new MessageRepository();
-    }
-
-    @Bean
-    public MessageService messageService() {
-        return new MessageService(messageRepository());
-    }
+//    @Bean
+//    public MessageRepository messageRepository() {
+//        return new MessageRepository();
+//    }
+//
+//    @Bean
+//    public MessageService messageService() {
+//        return new MessageService(messageRepository());
+//    }
 }
