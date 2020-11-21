@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/messages")
 public class MessageController {
 
+    @SecurityCheck
     @GetMapping("/welcome")
-    public String welcome() {
+    public String welcome() throws InterruptedException {
+
         return "Hello, Welcome to Spring boot";
     }
 }
